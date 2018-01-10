@@ -1,56 +1,41 @@
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
-public class FizzBuzz {
+class FizzBuzz {
+    private List<Integer> orderedKeys = new ArrayList<>();
+    private Map<Integer, String> translations = new HashMap<>();
 
-    private static List<String> replace = new ArrayList<>();
-    private static List<Integer> divisor = new ArrayList<>();
-
-    public void FizzBuzz(){
-
-
+    public FizzBuzz(){
+        this.translations.put(3, "Fizz");
+        this.translations.put(5, "Buzz");
+        this.translations.put(7, "Pop");
+        this.orderedKeys.add(3);
+        this.orderedKeys.add(5);
+        this.orderedKeys.add(7);
     }
 
-    public void FizzBuzz(List<String> r, List<Integer> d){
-        this.replace = r;
-        this.divisor = d;
+    public FizzBuzz(List<Integer> a, Map<Integer, String> b){
+        this.orderedKeys = a;
+        this.translations = b;
+        Collections.sort(orderedKeys); //verify input
     }
 
-
-    protected void seeConversions(){
-        for(int i = 0; i < replace.size(); i++) System.out.println(divisor.get(i) + " - " + replace.get(i));
-
-    }
-
-    protected void addConverter(int d, String r){
-        //can easily make this actually based on active user input
-        this.replace.add(r);
-        this.divisor.add(d);
-        int index = divisor.indexOf(d);
-        while(true){
-            if(index == 0) break;
-            if(divisor.get(index-1) > d){
-                Collections.swap(divisor, index, index-1);
-                Collections.swap(replace, index, index-1);
-                index--;
-            }
-            else break;
-        }
-    }
-
-    protected String translateFizzBuzz(int score){
+    protected String getAnswer(int num){
         StringBuilder b = new StringBuilder();
-
-        String prefix = "";
-        for(int i = 0; i < replace.size(); i++){
-            if(score % divisor.get(i) == 0){
-                b.append(prefix);
-                b.append(replace.get(i));
-                prefix = " ";
-            }
+        for(Integer i: orderedKeys){
+            if(num % i == 0) b.append(translations.get(i));
         }
-        if(b.length() == 0) return Integer.toString(score);
         return b.toString();
+    }
+
+    //allowing external changes to private fields seems bad practice, but how else can I allow for changes?
+    //although you still cant acces it directly
+    protected void addTranslation(int num, String translation){
+        if(translations.containsKey(num)) translations.remove(num);
+        if(!orderedKeys.contains(num)){
+            orderedKeys.add(num);
+            Collections.sort(orderedKeys);
+        }
+        this.translations.put(num, translation);
     }
 }
