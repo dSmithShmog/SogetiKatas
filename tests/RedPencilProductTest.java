@@ -24,4 +24,17 @@ public class RedPencilProductTest {
 
         assertThat(false, equalTo(red.getRedPencil()));
     }
+
+    @Test
+    public void whenGivenLessThanFiveSaleNotRedPencil(){
+        red.changeSale(4);
+
+        assertThat(false, equalTo(red.getRedPencil()));
+    }
+    @Test
+    public void whenGivenGreaterThanThirtySaleNotRedPencil(){
+        red.changeSale(31);
+
+        assertThat(false, equalTo(red.getRedPencil()));
+    }
 }
