@@ -19,7 +19,7 @@ class RedPencilProduct {
 
     public RedPencilProduct(double price){
         this.redPencil = false;
-        this.creationDate = LocalDateTime.now();
+        this.creationDate = LocalDateTime.now(); //curious, what determines 'local'? IP?
         this.originalPrice = price;
         this.currentPrice = price;
         this.sale = 0;
@@ -28,6 +28,7 @@ class RedPencilProduct {
     }
 
     protected void changeSale(int change) {
+
         this.sale += change;
 
         if(change < 0){
@@ -73,9 +74,5 @@ class RedPencilProduct {
     protected LocalDateTime getCreationDate(){return this.creationDate;}
     protected boolean getRedPencil(){return this.redPencil;}
 
-    //setters
-    protected void setCurrentPrice(double x){this.currentPrice = x;}
-    protected void setDaysAsRedPencil(int x){this.daysAsRedPencil = x;}
-    protected void setDaysPastRedPencil(int x){this.daysPastRedPencil = x;}
 
 }
