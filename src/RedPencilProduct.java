@@ -14,49 +14,49 @@ public class RedPencilProduct {
 
     //In a real implementation it would likely be better to use actual dates and arithmetic,
     //but since I just need 30 day triggers, this simplistic approach should be fine. Hopefully
-    private int redPencilDays;
+    private int daysAsRedPencil;
     private int daysPastRedPencil;
 
-    public void RedPencilProduct(double p){
+    public void RedPencilProduct(double price){
         this.redPencil = false;
         this.creationDate = LocalDateTime.now();
-        this.originalPrice = p;
-        this.currentPrice = p;
+        this.originalPrice = price;
+        this.currentPrice = price;
         this.sale = 0;
-        this.redPencilDays = 0;
+        this.daysAsRedPencil = 0;
         this.daysPastRedPencil = 30;
     }
 
-    protected void changeSale(int s) {
-        this.sale += s;
+    protected void changeSale(int change) {
+        this.sale += change;
 
-        if(s < 0){
+        if(change < 0){
             redPencil = false;
             daysPastRedPencil = 0;
-            redPencilDays = 0;
+            daysAsRedPencil = 0;
         }
         else if(sale > 5 && sale < 30 && daysPastRedPencil >= 30){
             redPencil = true;
-            redPencilDays = 0;
+            daysAsRedPencil = 0;
             daysPastRedPencil = 0;
         }
         else{
             redPencil = false;
             daysPastRedPencil = 0;
-            redPencilDays = 0;
+            daysAsRedPencil = 0;
         }
 
-        this.currentPrice = this.originalPrice*sale;
+        currentPrice = originalPrice*sale;
 
     }
 
-    //under the assumption that some external framework calls this method every 24 hours
-    protected void checkRedPencil(){
-        if(redPencilDays+1 >= 30){
-            this.currentPrice = this.originalPrice;
-            this.redPencil = false;
-            this.sale = 0; //sort of conflicts with my changeSale. Poor design?
-            redPencilDays = 0;
+    //under the assumption that some external framework calls this method every 24 hours, seems clunky but it could work
+    protected void checkIn(){
+        if(daysAsRedPencil+1 >= 30){
+            currentPrice = originalPrice;
+            redPencil = false;
+            changeSale(-sale); //reset sale to zero
+            daysAsRedPencil = 0;
             daysPastRedPencil = 0;
         }
         else if(!redPencil){
@@ -66,9 +66,14 @@ public class RedPencilProduct {
     }
 
     //getters
-    private double getPrice(){return this.currentPrice;}
+    private double getCurrentPrice(){return this.currentPrice;}
+    private double getOriginalPrice(){ return this.originalPrice;}
     private int getSale(){return this.sale;}
     private LocalDateTime getCreationDate(){return this.creationDate;}
 
+    //setters
+    private void setCurrentPrice(double x){this.currentPrice = x;}
+    private void setDaysAsRedPencil(int x){this.daysAsRedPencil = x;}
+    private void setDaysPastRedPencil(int x){this.daysPastRedPencil = x;}
 
 }

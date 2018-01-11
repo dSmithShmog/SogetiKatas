@@ -9,7 +9,7 @@ import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.*;
 
 public class FizzBuzzTest {
-
+    private FizzBuzz f;
 
     @Test
     public void whenGivenUnorderedKeysValidates(){
@@ -19,14 +19,14 @@ public class FizzBuzzTest {
         HashMap<Integer,String> m = new HashMap<>();
         m.put(3, "Fizz");
         m.put(1, "Fuzz");
-        FizzBuzz f = new FizzBuzz(l, m);
+        f = new FizzBuzz(l, m);
 
         assertThat("FuzzFizz", equalTo(f.getAnswer(3)));
     }
 
     @Test
     public void whenGivenDefaultPerformsCorrectly(){
-        FizzBuzz f = new FizzBuzz();
+        f = new FizzBuzz();
 
         assertThat("FizzBuzz", equalTo(f.getAnswer(15)));
     }

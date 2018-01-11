@@ -19,17 +19,20 @@ class Bowling {
     }
 
     //doesn't take all the ways to screw up a bowling scoreboard into account, just some cases
-    protected boolean validateGame(String game){
-        if(game.length() < 20) return false;
+    private boolean validateGame(String game){
+        if(game.length() < 20 || game.length() > 21) return false;
+        if(game.matches("[^\\dX\\-/]")) return false;
         for(int i = 0; i < game.length(); i++){
             if(i%2 == 0 && game.charAt(i) == '/' ) return false;
             else if(game.charAt(i) == 'X' && game.charAt(i+1) != '-') return false;
+            else if(game.charAt(i) == 'X' && i%2 != 0) return false;
         }
         return true;
     }
     protected int score(String game){
 
         // assume a space delimeter
+        if(game == null) return -1;
         game = game.replaceAll("\\s", "");
         int sum = 0;
 
@@ -39,14 +42,13 @@ class Bowling {
         }
         for(int i = 0; i < game.length(); i++){
             System.out.println("Current Sum: "+sum);
-            if(i >= 19 ){ //if we're in the 10th frame
+            if(i >= 19 ){ //we're in the 10th frame
                 if(game.charAt(i) == '/') sum += (10 - getThrowValue(game.charAt(i-1)));
                 else sum += getThrowValue(game.charAt(i));
                 continue;
             }
             if(game.charAt(i) == 'X'){
-                sum += getThrowValue('X');
-
+                sum += 10;
                 sum += getThrowValue(game.charAt(i+2)); //assume '-' in second half of frame
                 sum += getThrowValue(game.charAt(i+3));
             }

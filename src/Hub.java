@@ -7,6 +7,6 @@ public class Hub {
         System.out.println(conv.convertToRoman(1234));
         System.out.println(conv.convertArabic("XXIX"));
         Bowling bowl = new Bowling();
-        System.out.println(bowl.score("5/ 5/ 5/ 5/ 5/ 5/ 5/ 5/ 5/ 5/"));
+        System.out.println(bowl.score("aaaaaaaaaaaaaaaaaaaa"));
     }
 }
