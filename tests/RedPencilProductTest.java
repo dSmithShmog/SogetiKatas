@@ -5,20 +5,27 @@ import static org.junit.Assert.*;
 public class RedPencilProductTest {
     private RedPencilProduct red;
 
-    @Before
-    public void createRedPencilProduct() {
+
+
+    @Test
+    public void whenSaleOf10ReturnsValidPrice(){
         red = new RedPencilProduct(100);
+        red.changeSale(.10);
+
+        assertThat(90, equalTo(red.getCurrentPrice()));
     }
 
     @Test
     public void whenSaleInRangeTurnsOnRedPencil(){
-        red.changeSale(10);
+        red = new RedPencilProduct(100);
+        red.changeSale(.10);
 
         assertThat(true, equalTo(red.getRedPencil()));
     }
     @Test
     public void whenCheckIn30TurnsOffRedPencilSale(){
-        red.changeSale(6);
+        red = new RedPencilProduct(100);
+        red.changeSale(.6);
 
         for(int i = 0; i < 30; i++) red.checkIn();
 
@@ -26,7 +33,8 @@ public class RedPencilProductTest {
     }
     @Test
     public void RedPencilLastsTwentyNineDays(){
-        red.changeSale(6);
+        red = new RedPencilProduct(100);
+        red.changeSale(.6);
 
         for(int i =0; i < 29; i++) red.checkIn();
 
@@ -35,13 +43,15 @@ public class RedPencilProductTest {
 
     @Test
     public void whenGivenLessThanFiveSaleNotRedPencil(){
-        red.changeSale(4);
+        red = new RedPencilProduct(100);
+        red.changeSale(.4);
 
         assertThat(false, equalTo(red.getRedPencil()));
     }
     @Test
     public void whenGivenGreaterThanThirtySaleNotRedPencil(){
-        red.changeSale(31);
+        red = new RedPencilProduct(100);
+        red.changeSale(.31);
 
         assertThat(false, equalTo(red.getRedPencil()));
     }

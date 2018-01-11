@@ -27,8 +27,12 @@ class RedPencilProduct {
         this.daysPastRedPencil = 30;
     }
 
-    protected void changeSale(int change) {
-
+    protected void changeSale(double change) { //whether to make this number make more sense algorithmically or to a person?
+    //figured making it look nicer could be handled client side somewhere
+        if(change < -1 || change > 1){
+            System.out.println("Invalid Sale Amount");
+            return;
+        }
         this.sale += change;
 
         if(change < 0){
@@ -36,7 +40,7 @@ class RedPencilProduct {
             daysPastRedPencil = 0;
             daysAsRedPencil = 0;
         }
-        else if(sale > 5 && sale < 30 && daysPastRedPencil >= 30){
+        else if(sale > .05 && sale < .30 && daysPastRedPencil >= 30){
             redPencil = true;
             daysAsRedPencil = 0;
             daysPastRedPencil = 0;
@@ -47,7 +51,7 @@ class RedPencilProduct {
             daysAsRedPencil = 0;
         }
 
-        currentPrice = originalPrice*sale;
+        currentPrice = originalPrice*(1.0-sale);
 
     }
 
