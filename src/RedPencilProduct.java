@@ -62,6 +62,7 @@ class RedPencilProduct {
         else if(!redPencil){
             daysPastRedPencil++;
         }
+        daysAsRedPencil++;
 
     }
 
