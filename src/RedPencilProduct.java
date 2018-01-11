@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 
 //im not sure how to program an object that is continuously in existence as a means of checking the 30 day rules
 //but here goes nothing, maybe I can approach is as just statically/manually checking dates
-public class RedPencilProduct {
+class RedPencilProduct {
 
     private boolean redPencil;
     private LocalDateTime creationDate;
@@ -17,7 +17,7 @@ public class RedPencilProduct {
     private int daysAsRedPencil;
     private int daysPastRedPencil;
 
-    public void RedPencilProduct(double price){
+    public RedPencilProduct(double price){
         this.redPencil = false;
         this.creationDate = LocalDateTime.now();
         this.originalPrice = price;
@@ -66,14 +66,15 @@ public class RedPencilProduct {
     }
 
     //getters
-    private double getCurrentPrice(){return this.currentPrice;}
-    private double getOriginalPrice(){ return this.originalPrice;}
-    private int getSale(){return this.sale;}
-    private LocalDateTime getCreationDate(){return this.creationDate;}
+    protected double getCurrentPrice(){return this.currentPrice;}
+    protected double getOriginalPrice(){ return this.originalPrice;}
+    protected int getSale(){return this.sale;}
+    protected LocalDateTime getCreationDate(){return this.creationDate;}
+    protected boolean getRedPencil(){return this.redPencil;}
 
     //setters
-    private void setCurrentPrice(double x){this.currentPrice = x;}
-    private void setDaysAsRedPencil(int x){this.daysAsRedPencil = x;}
-    private void setDaysPastRedPencil(int x){this.daysPastRedPencil = x;}
+    protected void setCurrentPrice(double x){this.currentPrice = x;}
+    protected void setDaysAsRedPencil(int x){this.daysAsRedPencil = x;}
+    protected void setDaysPastRedPencil(int x){this.daysPastRedPencil = x;}
 
 }

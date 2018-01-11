@@ -7,10 +7,21 @@ public class RedPencilProductTest {
 
     @Before
     public void createRedPencilProduct() {
-        red = new RedPencilProduct();
+        red = new RedPencilProduct(100);
+    }
+
+    @Test
+    public void whenSaleInRangeTurnsOnRedPencil(){
+        red.changeSale(10);
+
+        assertThat(true, equalTo(red.getRedPencil()));
     }
     @Test
     public void whenCheckIn30TurnsOffRedPencilSale(){
+        red.changeSale(6);
 
+        for(int i = 0; i < 30; i++) red.checkIn();
+
+        assertThat(false, equalTo(red.getRedPencil()));
     }
 }
