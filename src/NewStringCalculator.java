@@ -7,6 +7,7 @@ public class NewStringCalculator {
 
     protected int calculateStringValue(String num){
         if(num == null || num.equals("")) return 0;
-        return 1;
+        return Integer.parseInt(num);
+
     }
 }

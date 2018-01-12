@@ -16,6 +16,10 @@ public class StringCalculatorTest {
     public void GivenEmptyReturnsZero(){
         assertThat(0, equalTo(calc.calculateStringValue("")));
     }
+    @Test
+    public void givenOneNumReturnsNumericValue(){
+        assertThat(1, equalTo(calc.calculateStringValue("1")));
+    }
 
 
 }
