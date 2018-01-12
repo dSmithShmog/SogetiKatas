@@ -11,8 +11,14 @@ public class RedPencilProductTest {
     }
 
     @Test
+    public void whenInRangeTurnsOnRedPencil(){
+        red.changeSale(.10);
+
+        assertTrue(red.getRedPencil());
+    }
+    @Test
     public void RedPencilLastsTwentyNineDays(){
-        red.changeSale(.6);
+        red.changeSale(.06);
 
         for(int i =0; i < 29; i++) red.checkIn();
 
@@ -20,13 +26,13 @@ public class RedPencilProductTest {
     }
 
     @Test
-    public void whenGivenLessThanFiveSaleNotRedPencil(){
+    public void whenGivenLessThanFiveNotRedPencil(){
         red.changeSale(.4);
 
         assertFalse(red.getRedPencil());
     }
     @Test
-    public void whenGivenGreaterThanThirtySaleNotRedPencil(){
+    public void whenGivenGreaterThanThirtyNotRedPencil(){
         red.changeSale(.31);
 
         assertFalse(red.getRedPencil());

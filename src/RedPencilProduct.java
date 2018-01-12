@@ -77,6 +77,8 @@ class RedPencilProduct {
     protected double getSale(){return this.sale;}
     protected LocalDateTime getCreationDate(){return this.creationDate;}
     protected boolean getRedPencil(){return this.redPencil;}
+    protected int getDaysAsRedPencil(){return this.daysAsRedPencil;}
+    protected int getDaysPastRedPencil(){return this.daysPastRedPencil;}
 
 
 }

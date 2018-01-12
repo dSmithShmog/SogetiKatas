@@ -21,11 +21,6 @@ public class RedPencilProductSaleTest{
         assertThat(90.0, equalTo(red.getCurrentPrice()));
     }
 
-    @Test
-    public void whenInRangeTurnsOnRedPencil(){
-        red.changeSale(.10);
 
-        assertTrue(red.getRedPencil());
-    }
 
 }
