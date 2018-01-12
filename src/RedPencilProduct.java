@@ -10,7 +10,7 @@ class RedPencilProduct {
     private LocalDateTime creationDate;
     private double originalPrice;
     private double currentPrice;
-    private int sale;
+    private double sale;
 
     //In a real implementation it would likely be better to use actual dates and arithmetic,
     //but since I just need 30 day triggers, this simplistic approach should be fine. Hopefully
@@ -74,7 +74,7 @@ class RedPencilProduct {
     //getters
     protected double getCurrentPrice(){return this.currentPrice;}
     protected double getOriginalPrice(){ return this.originalPrice;}
-    protected int getSale(){return this.sale;}
+    protected double getSale(){return this.sale;}
     protected LocalDateTime getCreationDate(){return this.creationDate;}
     protected boolean getRedPencil(){return this.redPencil;}
 
