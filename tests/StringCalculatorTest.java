@@ -20,6 +20,10 @@ public class StringCalculatorTest {
     public void givenOneNumReturnsNumericValue(){
         assertThat(1, equalTo(calc.calculateStringValue("1")));
     }
+    @Test
+    public void givenTwoNumsReturnsNumericValue(){
+        assertThat(3, equalTo(calc.calculateStringValue("1,2")));
+    }
 
 
 }
