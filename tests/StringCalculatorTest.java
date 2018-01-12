@@ -3,13 +3,19 @@ import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.*;
 
 public class StringCalculatorTest {
-    private StringCalculator calc;
+    private NewStringCalculator calc;
     @Before
     public void createStringCalculator(){
-        calc = new StringCalculator();
+        calc = new NewStringCalculator();
     }
     @Test
-    public void whenGivenNullStringReturn0(){
-        assertThat(0, equalTo(calc.add(null)));
+    public void whenGivenNullStringReturnsZero(){
+        assertThat(0, equalTo(calc.calculateStringValue(null)));
     }
+    @Test
+    public void GivenEmptyReturnsZero(){
+        assertThat(0, equalTo(calc.calculateStringValue("")));
+    }
+
+
 }
