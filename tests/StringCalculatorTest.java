@@ -45,6 +45,8 @@ public class StringCalculatorTest {
 
         assertThat(sum, equalTo(calc.calculateStringValue(num)));
     }
-
+    @Test public void givenNewDelimiterReturnsNumericValue(){
+        assertThat(10, equalTo(calc.calculateStringValue("//;\n1,2\n3;4")));
+    }
 
 }
