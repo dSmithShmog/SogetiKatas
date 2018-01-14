@@ -38,9 +38,15 @@ public class NewStringCalculator {
         delimiters.add(",");
         delimiters.add("\n");
         if(num.charAt(0) == '/'){
-            delimiters.add(num.substring(2,3));
-            num = num.substring(4);
+            Pattern p = Pattern.compile("\\[(.*?)\\]", Pattern.DOTALL);
+            Matcher m = p.matcher(num);
+            while(m.find()){
+                System.out.println(m.group(1));
+                delimiters.add(m.group(1));
+            }
+            num = num.split("]\n")[1];
         }
+
         String[] nums = num.split(buildRegexPattern());
         return nums;
     }

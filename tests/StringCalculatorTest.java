@@ -51,7 +51,7 @@ public class StringCalculatorTest {
         assertThat(sum, equalTo(calc.calculateStringValue(num)));
     }
     @Test public void givenNewDelimiterReturnsNumericValue(){
-        assertThat(10, equalTo(calc.calculateStringValue("//;\n1,2\n3;4")));
+        assertThat(10, equalTo(calc.calculateStringValue("//[;]\n1,2\n3;4")));
     }
     @Test(expected = NegativeNumbersException.class)
     public void givenNegativeThrowsErrorAndShowNegatives(){
@@ -60,5 +60,8 @@ public class StringCalculatorTest {
     }
     @Test public void ignoresNumbersGreaterThan1000(){
         assertEquals(2, calc.calculateStringValue("1000,2"));
+    }
+    @Test public void givenDelimiterOfAnyLengthReturnsValue(){
+        assertEquals(6, calc.calculateStringValue("//[&&]\n1,2&&3"));
     }
 }
