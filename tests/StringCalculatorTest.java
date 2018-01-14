@@ -58,5 +58,7 @@ public class StringCalculatorTest {
         calc.calculateStringValue("-1,-2");
 
     }
-
+    @Test public void ignoresNumbersGreaterThan1000(){
+        assertEquals(2, calc.calculateStringValue("1000,2"));
+    }
 }

@@ -23,6 +23,7 @@ public class NewStringCalculator {
         for(String x: nums){
             int num = Integer.parseInt(x);
             if(num < 0) negs.add(num);
+            else if(num >= 1000) continue;
             else sum += Integer.parseInt(x);
         }
         //im unfamiliar with best practices around implementing and handling exceptions
