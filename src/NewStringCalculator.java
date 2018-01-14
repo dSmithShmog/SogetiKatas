@@ -57,11 +57,15 @@ public class NewStringCalculator {
         for(String x: delimiters){
             if(x.equals("-")) {
                 b.append(prefix);
+                b.append("\\Q");
                 b.append(x+"(?=(?:"+x+"))"); //account for negative numbers after '-' delimiter
+                b.append("\\E");
             }
             else {
                 b.append(prefix);
+                b.append("\\Q");
                 b.append(x);
+                b.append("\\E");
             }
             prefix = "|";
         }
