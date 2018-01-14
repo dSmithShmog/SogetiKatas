@@ -64,4 +64,10 @@ public class StringCalculatorTest {
     @Test public void givenDelimiterOfAnyLengthReturnsValue(){
         assertEquals(6, calc.calculateStringValue("//[&&]\n1,2&&3"));
     }
+    @Test public void givenManyDelimitersOfAnyLengthReturnsValue(){
+        assertEquals(6, calc.calculateStringValue("//[BAB][ABA]\n1BAB2ABA3"));
+    }
+    @Test public void givenRegexMetaCharacterAsDelimReturnsValue(){
+        assertEquals(3, calc.calculateStringValue("//[?]\n1?2"));
+    }
 }

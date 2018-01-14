@@ -27,7 +27,7 @@ public class NewStringCalculator {
             else sum += Integer.parseInt(x);
         }
         //im unfamiliar with best practices around implementing and handling exceptions
-        //so I just extended runtime so I didnt have to check it basically everywhere
+        //so I just extended RuntimeException so I didnt have to check it basically everywhere
         if(negs.size() > 0) throw new NegativeNumbersException("Negative Number Exception: "+negs.toString());
 
         System.out.println(sum);
@@ -55,8 +55,14 @@ public class NewStringCalculator {
         String prefix = "";
         StringBuilder b = new StringBuilder();
         for(String x: delimiters){
-            b.append(prefix);
-            b.append(x);
+            if(x.equals("-")) {
+                b.append(prefix);
+                b.append(x+"(?=(?:"+x+"))"); //account for negative numbers after '-' delimiter
+            }
+            else {
+                b.append(prefix);
+                b.append(x);
+            }
             prefix = "|";
         }
         return b.toString();
