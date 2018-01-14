@@ -1,3 +1,5 @@
+
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -14,11 +16,19 @@ public class NewStringCalculator {
         return addNumbers(numbers);
     }
 
-    private int addNumbers(String[] nums){
+
+    private int addNumbers(String[] nums) {
         int sum = 0;
+        List<Integer> negs = new ArrayList<>();
         for(String x: nums){
-            sum += Integer.parseInt(x);
+            int num = Integer.parseInt(x);
+            if(num < 0) negs.add(num);
+            else sum += Integer.parseInt(x);
         }
+        //im unfamiliar with best practices around implementing and handling exceptions
+        //so I just extended runtime so I didnt have to check it basically everywhere
+        if(negs.size() > 0) throw new NegativeNumbersException("Negative Number Exception: "+negs.toString());
+
         System.out.println(sum);
         return sum;
     }

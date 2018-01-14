@@ -1,4 +1,6 @@
+
 import org.junit.*;
+import org.junit.rules.ExpectedException;
 
 import java.util.Random;
 
@@ -7,10 +9,13 @@ import static org.junit.Assert.*;
 
 public class StringCalculatorTest {
     private NewStringCalculator calc;
+    @Rule public ExpectedException thrown = ExpectedException.none();
+
     @Before
     public void createStringCalculator(){
         calc = new NewStringCalculator();
     }
+
     @Test
     public void whenGivenNullStringReturnsZero(){
         assertThat(0, equalTo(calc.calculateStringValue(null)));
@@ -47,6 +52,11 @@ public class StringCalculatorTest {
     }
     @Test public void givenNewDelimiterReturnsNumericValue(){
         assertThat(10, equalTo(calc.calculateStringValue("//;\n1,2\n3;4")));
+    }
+    @Test(expected = NegativeNumbersException.class)
+    public void givenNegativeThrowsErrorAndShowNegatives(){
+        calc.calculateStringValue("-1,-2");
+
     }
 
 }
